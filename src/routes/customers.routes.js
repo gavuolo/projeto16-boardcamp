@@ -1,8 +1,8 @@
 import { Router } from "express";
-//import { postGame } from "../controllers/games.controller.js";
-//import { postGamesValidation } from "../middlewares/game.middleware.js";
+import { postCustomerValidation } from "../middlewares/customers.middleware.js";
+import { postCustomer } from "../controllers/customers.controller.js";
 const customerRouter = Router();
 
-customerRouter.post('game', )
+customerRouter.post("/customer", postCustomerValidation, postCustomer);
 
-export default customerRouter
+export default customerRouter;

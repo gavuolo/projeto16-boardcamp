@@ -1,8 +1,8 @@
 import joi from "joi";
 
-export const postGameSchema = joi.object({
-    name: joi.string().min(1).required(),
-    image: joi.string().required(),
-    stockTotal: joi.number().positive().required(),
-    pricePerDay: joi.number().positive().required()
+export const postCustomerSchema = joi.object({
+    name: joi.string().min(2).required(),
+    phone: joi.string().min(10).max(11).pattern(/^\d+$/).required(),
+    cpf: joi.string().length(11).pattern(/^\d+$/).required(),
+    birthday: joi.date().required()
 })
