@@ -15,7 +15,6 @@ export async function postCustomer(req, res) {
     res.status(500).send(error.message)
   }
 }
-
 export async function getCustomer(req, res) {
   try {
     const customers = await db.query(`
@@ -30,7 +29,7 @@ export async function getCustomerId(req, res) {
   const { id } = req.params;
   try {
     const customer = await db.query(`SELECT * FROM customers WHERE id=$1`, [id])
-    if(customer.rowCount === 0){
+    if (customer.rowCount === 0) {
       res.sendStatus(404);
     }
     res.send(customer.rows[0])
@@ -38,4 +37,18 @@ export async function getCustomerId(req, res) {
     res.status(500).send(error.message);
   }
 }
-
+export async function updateCustomer(req, res) {
+  const { name, phone, cpf, birthday } = res.locals.customer;
+  const { id } = req.params
+  try {
+    await db.query(
+      `
+    UPDATE customers SET name=$1, phone=$2, cpf=$3, birthday-$4 WHERE id=$5
+    `,
+      [name, phone, cpf, birthday, id]
+    );
+    res.sendStatus(201);
+  } catch (error) {
+    res.status(500).send(error.message)
+  }
+}
