@@ -11,9 +11,11 @@ export async function postCustomerValidation(req, res, next) {
     return res.status(400).send({ errors });
   }
 
+  //procura cpf do body com o cpf do banco
   const cpfExists = await db.query("SELECT * FROM customers WHERE cpf=$1", [
     customer.cpf,
   ]);
+  //se o cpf ja existe
   if (cpfExists.rowCount !== 0 && cpfExists.rows[0].id !== Number(id)) {
     return res.sendStatus(409);
   }

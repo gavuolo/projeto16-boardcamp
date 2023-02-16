@@ -9,8 +9,7 @@ dotenv.config();
 const app = express();
 app.use(cors());
 app.use(express.json());
-app.use(gameRouter);
-app.use(customerRouter)
+app.use([gameRouter, customerRouter]);
 
 const PORT = process.env.PORT
 app.listen(PORT, () => console.log(`Server running in port: ${PORT}`));
