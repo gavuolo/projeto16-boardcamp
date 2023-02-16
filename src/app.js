@@ -12,5 +12,5 @@ app.use(express.json());
 app.use(gameRouter);
 app.use(customerRouter)
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT
 app.listen(PORT, () => console.log(`Server running in port: ${PORT}`));
