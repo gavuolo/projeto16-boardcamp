@@ -4,7 +4,7 @@ import { postCustomer, getCustomer, getCustomerId, updateCustomer } from "../con
 const customerRouter = Router();
 
 customerRouter.post("/customer", postCustomerValidation, postCustomer);
-customerRouter.get('/customer', getCustomer )
+customerRouter.get('/customer', getCustomer)
 customerRouter.get("/customer/:id", getCustomerId)
 customerRouter.put('/customer/:id', postCustomerValidation, updateCustomer)
 
